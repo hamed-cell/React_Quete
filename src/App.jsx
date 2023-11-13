@@ -1,7 +1,6 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useEffect, useState } from 'react';
+import NavBar from './component/navbar';
 import './App.css';
-import React, { useState } from "react";
 
 const pokemonList = [
   {
@@ -29,8 +28,12 @@ const pokemonList = [
   },
 ];
 
-function App() {
+const App = () => {
   const [pokemonIndex, setPokemonIndex] = useState(0);
+
+  useEffect(() => {
+    alert('hello pokemon trainer :)');
+  }, []);
 
   const handlePrevious = () => {
     if (pokemonIndex > 0) {
@@ -45,8 +48,13 @@ function App() {
     }
   };
 
+  const handlePokemonClick = (index) => {
+    setPokemonIndex(index);
+  };
+
   return (
     <div>
+      <h1>Pokédex</h1>
       <p>{pokemonList[pokemonIndex].name}</p>
       <img src={pokemonList[pokemonIndex].imgSrc} alt={pokemonList[pokemonIndex].name} />
 
@@ -56,8 +64,11 @@ function App() {
       <button onClick={handleNext} disabled={pokemonIndex === pokemonList.length - 1}>
         Suivant
       </button>
+
+      <NavBar pokemonList={pokemonList} onPokemonClick={handlePokemonClick} />
     </div>
   );
-}
+};
 
 export default App;
+  
