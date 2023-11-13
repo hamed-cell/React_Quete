@@ -27,7 +27,8 @@ const pokemonList = [
     name: "mew",
   },
 ];
-export default function App() {
+
+const App = () => {
   const [pokemonIndex, setPokemonIndex] = useState(0);
 
   useEffect(() => {
@@ -47,6 +48,10 @@ export default function App() {
     }
   };
 
+  const handlePokemonClick = (index) => {
+    setPokemonIndex(index);
+  };
+
   return (
     <div>
       <h1>Pokédex</h1>
@@ -60,12 +65,10 @@ export default function App() {
         Suivant
       </button>
 
-      <NavBar />
+      <NavBar pokemonList={pokemonList} onPokemonClick={handlePokemonClick} />
     </div>
   );
-}
+};
 
-
-
-
-
+export default App;
+  
